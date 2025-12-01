@@ -1,9 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "./context/AuthContext.jsx"
 import "./App.css";
 import { getUsers, createUser } from "./api/getUsers";
 function App() {
   const [users, setUsers] = useState([]);
   const [valueInput, setValueInput] = useState("");
+  const  name  = useContext(AuthContext);
+
+  
 
   useEffect(() => {
     async function fetchUsers() {
@@ -32,6 +36,7 @@ function App() {
     <div>
       <input value={valueInput} onChange={getInputValue}></input>{" "}
       <button onClick={sentPost}>Sent</button>
+      <div>Hello { name }</div>
       <ul>
         {users.map((user) => {
           return <li key={user.id}>{user.title}</li>;
